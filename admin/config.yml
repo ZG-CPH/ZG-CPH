@@ -5,8 +5,6 @@
     auth_type: pkce
     app_id: Ov23li27lNmhXvCo5VGk
 
-  local_backend: true
-
   media_folder: "assets/images/prev-events"
   public_folder: "assets/images/prev-events"
 
