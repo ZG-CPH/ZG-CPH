@@ -147,12 +147,18 @@
 
       obs.observe(document.body, { childList: true, subtree: true });
 
-      // If nothing has happened after 6 seconds, decap-server is probably not running
-      setTimeout(function () {
-        if (!loggedIn && btn.style.display !== 'block') {
-          status.textContent = 'Run  npx decap-server  in your terminal, then refresh.';
-        }
-      }, 6000);
+      // Retry button detection - Decap github backend can take longer to render
+        setTimeout(function () {
+          if (!loggedIn && btn.style.display !== 'block') {
+            var decapBtn = document.querySelector('#nc-root button');
+            if (decapBtn) {
+              status.textContent = '';
+              btn.style.display = 'block';
+            } else {
+              status.textContent = 'Loading...';
+            }
+          }
+        }, 8000);
     })();
   </script>
 
