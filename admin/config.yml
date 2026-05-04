@@ -8,6 +8,7 @@
   media_folder: "assets/images/prev-events"
   public_folder: "assets/images/prev-events"
 
+
   collections:
 
     - name: "events"
