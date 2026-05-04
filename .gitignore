@@ -1,0 +1,11 @@
+# Local dev
+node_modules/
+.DS_Store
+Thumbs.db
+
+# Decap CMS local proxy
+.netlify/
+
+# Editor
+.vscode/
+*.swp
