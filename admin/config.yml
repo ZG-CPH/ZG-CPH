@@ -3,7 +3,7 @@ backend:
   repo: ZG-CPH/ZG-CPH
   branch: main
   auth_type: pkce
-  app_id: REPLACE_WITH_OAUTH_CLIENT_ID
+  app_id: Ov23li27lNmhXvCo5VGk
 
 local_backend: true
 
