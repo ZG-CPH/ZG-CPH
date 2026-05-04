@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zeitgeist Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500&display=swap" rel="stylesheet">
+  <style>
+    body { margin: 0; background: #0d0d0d; }
+
+    /* -------------------------------------------------------
+       Our custom overlay - shown during loading and on login.
+       Removed entirely once the Decap editor is ready.
+       ------------------------------------------------------- */
+    #zg-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 999999;
+      background: #0d0d0d;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      transition: opacity 350ms ease;
+    }
+
+    #zg-overlay img {
+      height: 46px;
+      width: auto;
+      margin-bottom: 3rem;
+    }
+
+    #zg-overlay-card {
+      background: #111;
+      border: 1px solid #2a2a2a;
+      padding: 2.5rem 3rem;
+      min-width: 280px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    #zg-overlay-status {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #555;
+      margin: 0;
+    }
+
+    #zg-overlay-btn {
+      display: none;
+      background: none;
+      border: 1px solid #444;
+      color: #c8c8c8;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 0.75rem 2rem;
+      cursor: pointer;
+      transition: border-color 200ms ease, color 200ms ease;
+    }
+
+    #zg-overlay-btn:hover {
+      border-color: #c8c8c8;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Our branded login screen, shown over everything until editor loads -->
+  <div id="zg-overlay">
+    <img src="../assets/images/logo.png" alt="Zeitgeist">
+    <div id="zg-overlay-card">
+      <p id="zg-overlay-status">Loading...</p>
+      <button id="zg-overlay-btn">Log in</button>
+    </div>
+  </div>
+
+  <!-- Decap CMS - renders into #nc-root, untouched by our CSS -->
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
+  <script>
+    (function () {
+      var overlay  = document.getElementById('zg-overlay');
+      var status   = document.getElementById('zg-overlay-status');
+      var btn      = document.getElementById('zg-overlay-btn');
+      var loggedIn = false;
+
+      // When our button is clicked, trigger Decap's own login button
+      btn.addEventListener('click', function () {
+        var decapBtn = document.querySelector('#nc-root button');
+        if (decapBtn) {
+          decapBtn.click();
+          status.textContent = 'Connecting...';
+          btn.style.display = 'none';
+        }
+      });
+
+      function dismiss() {
+        if (loggedIn) return;
+        loggedIn = true;
+        overlay.style.opacity = '0';
+        setTimeout(function () { overlay.remove(); }, 380);
+        watchForLogout();
+      }
+
+      // After login: if Decap loses its nav links (logout), reload so we auto-login again
+      function watchForLogout() {
+        var timer;
+        var logoutObs = new MutationObserver(function () {
+          clearTimeout(timer);
+          timer = setTimeout(function () {
+            var root = document.getElementById('nc-root');
+            if (root && !root.querySelector('a[href]')) {
+              window.location.reload();
+            }
+          }, 1000);
+        });
+        logoutObs.observe(document.body, { childList: true, subtree: true });
+      }
+
+      var obs = new MutationObserver(function () {
+        var root = document.getElementById('nc-root');
+        if (!root) return;
+
+        // Decap's login button has appeared - show our Log in button
+        var decapBtn = root.querySelector('button');
+        if (decapBtn && !loggedIn) {
+          status.textContent = '';
+          btn.style.display = 'block';
+        }
+
+        // Detect that the editor has loaded: Decap adds nav links to collections
+        // after login. Any anchor inside nc-root signals we are past the login gate.
+        if (!loggedIn && root.querySelector('a[href]')) {
+          dismiss();
+        }
+      });
+
+      obs.observe(document.body, { childList: true, subtree: true });
+
+      // If nothing has happened after 6 seconds, decap-server is probably not running
+      setTimeout(function () {
+        if (!loggedIn && btn.style.display !== 'block') {
+          status.textContent = 'Run  npx decap-server  in your terminal, then refresh.';
+        }
+      }, 6000);
+    })();
+  </script>
+
+</body>
+</html>

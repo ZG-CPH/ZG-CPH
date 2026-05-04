@@ -1,0 +1,44 @@
+{
+  "events": [
+    {
+      "title": "ZEITGEIST 08",
+      "date": "TBD",
+      "image": "assets/images/prev-events/event-08.jpg"
+    },
+    {
+      "title": "ZEITGEIST 07",
+      "date": "TBD",
+      "image": "assets/images/prev-events/event-01.jpg"
+    },
+    {
+      "title": "ZEITGEIST 06",
+      "date": "TBD",
+      "image": "assets/images/prev-events/event-06.jpg"
+    },
+    {
+      "title": "ZEITGEIST 05",
+      "date": "TBD",
+      "image": "assets/images/prev-events/event-05.jpg"
+    },
+    {
+      "title": "ZEITGEIST 04",
+      "date": "TBD",
+      "image": "assets/images/prev-events/event-04.jpg"
+    },
+    {
+      "title": "ZEITGEIST 03",
+      "date": "TBD",
+      "image": "assets/images/prev-events/event-03.jpg"
+    },
+    {
+      "title": "ZEITGEIST 02",
+      "date": "",
+      "image": "assets/images/prev-events/event-02.jpg"
+    },
+    {
+      "title": "ZEITGEIST 01",
+      "date": "",
+      "image": "assets/images/prev-events/event-07.jpg"
+    }
+  ]
+}

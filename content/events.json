@@ -1,0 +1,28 @@
+{
+  "events": [
+    {
+      "title": "ZEITGEIST: Under The Sun",
+      "date": "31 May 2026",
+      "location": "Byhaven, Copenhagen",
+      "poster": "assets/images/prev-events/event-06.jpg",
+      "details": "Zeitgeist returns to Byhaven for an open-air session from afternoon into night. Full lineup TBA.",
+      "facebookUrl": "www.event-placeholder.dk"
+    },
+    {
+      "title": "ZEITGEIST: TBA",
+      "date": "31 Oct 2026",
+      "location": "Den Anden Side, Copenhagen",
+      "poster": "assets/images/prev-events/event-08.jpg",
+      "details": "Details coming soon.",
+      "facebookUrl": ""
+    },
+    {
+      "title": "ZEITGEIST: TBA",
+      "date": "12 Sept 2026",
+      "location": "TBA",
+      "poster": "assets/images/prev-events/90ersinus.jpg",
+      "details": "DETALJER",
+      "facebookUrl": "www.sinus.dk"
+    }
+  ]
+}

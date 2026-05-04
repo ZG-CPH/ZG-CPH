@@ -1,0 +1,61 @@
+backend:
+  name: github
+  repo: ZG-CPH/ZG-CPH
+  branch: main
+  auth_type: pkce
+  app_id: REPLACE_WITH_OAUTH_CLIENT_ID
+
+local_backend: true
+
+media_folder: "assets/images/prev-events"
+public_folder: "assets/images/prev-events"
+
+collections:
+
+  - name: "events"
+    label: "Upcoming Events"
+    editor:
+      preview: false
+    files:
+      - file: "content/events.json"
+        name: "events"
+        label: "Events List"
+        fields:
+          - label: "Events"
+            name: "events"
+            widget: "list"
+            fields:
+              - { label: "Title",        name: "title",       widget: "string" }
+              - { label: "Date",         name: "date",        widget: "string",  hint: "e.g. 31 May 2026" }
+              - { label: "Location",     name: "location",    widget: "string" }
+              - { label: "Poster",       name: "poster",      widget: "image",   required: false, hint: "Leave blank to use logo placeholder" }
+              - { label: "Details",      name: "details",     widget: "text" }
+              - { label: "Facebook URL", name: "facebookUrl", widget: "string",  required: false, hint: "e.g. https://fb.me/e/..." }
+
+  - name: "about"
+    label: "About Page"
+    editor:
+      preview: false
+    files:
+      - file: "content/about.json"
+        name: "about"
+        label: "About Text"
+        fields:
+          - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "previous-events"
+    label: "Past Events"
+    editor:
+      preview: false
+    files:
+      - file: "content/previous-events.json"
+        name: "previous-events"
+        label: "Past Events Gallery"
+        fields:
+          - label: "Events"
+            name: "events"
+            widget: "list"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Date",  name: "date",  widget: "string", required: false, hint: "e.g. June 2023" }
+              - { label: "Image", name: "image", widget: "image" }

@@ -1,0 +1,45 @@
+/* ============================================================
+   FRONT PAGE
+   ============================================================ */
+
+.upcoming-events {
+  padding: 5rem 2rem;
+}
+
+.section-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #888;
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+
+/* ============================================================
+   ABOUT PAGE
+   ============================================================ */
+
+.about-section {
+  padding: 6rem 2rem;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.about-section h1 {
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  color: var(--muted);
+  margin-bottom: 2.5rem;
+}
+
+/* ============================================================
+   PREVIOUS EVENTS PAGE
+   ============================================================ */
+
+.gallery-section {
+  padding: 4.5rem 2rem;
+}
+
+.gallery-section .section-label {
+  margin-bottom: 2.5rem;
+}
